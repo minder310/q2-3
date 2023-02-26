@@ -1,0 +1,9 @@
+INSERT INTO `user`(`ID`, `ACC`, `PW`, `EMAIL`)
+VALUES ('[value-1]','mem02','mem02','mem02@labor.gov.tw'),
+('[value-1]','admin','1234','admin@labor.gov.tw'),
+('[value-1]','test','5678','test@labor.gov.tw'),
+('[value-1]','mem01','mem01','mem01@labor.gov.tw')
+admin,1234,admin@labor.gov.tw
+test,5678,test@labor.gov.tw
+mem01,mem01,mem01@labor.gov.tw
+mem02,mem02,mem02@labor.gov.tw
