@@ -100,7 +100,7 @@ class DB
                 }
                 break;
             default:
-                $sql = "select $math($arg[0]) from `$this->table` ";
+                $sql = "select $math($arg[0]) from $this->table ";
                 if (isset($arg[1])) {
                     if (is_array($arg[1])) {
                         $tmp = $this->ArToSq($arg[1]);
@@ -110,7 +110,6 @@ class DB
                     }
                 }
         }
-        dd($sql);
         return $this->pdo->query($sql)->fetchColumn();
     }
     public function count(...$arg){

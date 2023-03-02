@@ -1,11 +1,14 @@
 <!-- 每日進站人數 -->
 <?php
-include_once "../api/base5.php";
 
-$today=$Total->find(["date"=>date("Y-m-d")]);
-if(isset($today)){
-    $today['total']=$today['total']+1;
-    $Total
-}else{
-    $Total->save(["total"=>1]);
+if(!isset($_SESSION['total'])){
+    $today=$Total->find(['date'=>date("Y-m-d")]);
+    if(empty($today)){
+        // 如果沒有資料。存入今天資料。
+        $Total->save(["date"=>date("Y-m-d"),"total"=>1]);
+    }else{
+        $today['total']++;
+    }
+    $Total->save($today);
+    $_SESSION['total']=1;
 }
