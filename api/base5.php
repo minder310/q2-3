@@ -32,7 +32,7 @@ class DB
         }
         return $tmp;
     }
-    public function all(...$agr)
+    public function all(...$arg)
     {
         $sql = "select * from $this->table";
         if (isset($arg[0])) {
