@@ -43,7 +43,7 @@
 							if ($_SESSION['login'] == "admin") { ?>
 								<a href="back.php">管理</a>|<a href="./unlogin.php">登出</a>
 							<?php } else if (isset($_SESSION['login'])) { ?>
-								歡迎，<?=$_SESSION['login']?><a href="./unlogin.php">登出</a>
+								<a href="./unlogin.php">登出</a>
 							<?php }
 						} else { ?>
 							<a href="?do=login">會員登入</a>

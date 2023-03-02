@@ -18,6 +18,7 @@ class DB
     private $dns = "mysql:host=localhost;charset=utf8;dbname=db14";
     private $table;
     private $pdo;
+    public $type=[1=>"健康新知",2=>"菸害防制",3=>"癌症防治",4=>"慢性病預防"];
 
     public function __construct($table)
     {
@@ -133,3 +134,16 @@ $Log=new DB("log");
 $Que=new DB("que");
 $News=new DB("news");
 $Total=new DB("total");
+
+// 宣告今天進站人數，與新增今天日期。
+if(!isset($_SESSION['total'])){
+    $today=$Total->find(["date"=>date("Y-m-d")]);
+    if(empty($today)){
+        $today=["date"=>date("Y-m-d"),"total"=>1];
+    }else{
+        $today["total"]=$today["total"]+1;
+    }
+    // 忘了這句。
+    $Total->save($today);
+    $_SESSION['total']=1;
+}
