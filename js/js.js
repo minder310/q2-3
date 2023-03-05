@@ -3,19 +3,23 @@ function lo(th,url)
 {
 	$.ajax(url,{cache:false,success: function(x){$(th).html(x)}})
 }
-function good(id,type,user)
-{
-	$.post("back.php?do=good&type="+type,{"id":id,"user":user},function()
-	{
-		if(type=="1")
-		{
-			$("#vie"+id).text($("#vie"+id).text()*1+1)
-			$("#good"+id).text("收回讚").attr("onclick","good('"+id+"','2','"+user+"')")
-		}
-		else
-		{
-			$("#vie"+id).text($("#vie"+id).text()*1-1)
-			$("#good"+id).text("讚").attr("onclick","good('"+id+"','1','"+user+"')")
-		}
+$(document).ready(()=>{
+	$(".goods").on("click",function(){
+		let user=$(this).data("user");
+		let news=$(this).data("news");
+		// siblings兄弟姊妹的意思。
+		let total=parseInt($(this).siblings("p").text());
+		console.log(user,news,total);
+		$.post("./api/good.php",{user,news},(e)=>{
+			console.log(e);
+			if(e==0){
+				$(this).text("收回讚");
+				$(this).siblings("p").text(total+1)
+			}
+			if(e==1){
+				$(this).text("讚");
+				$(this).siblings("p").text(total-1)
+			}
+		})
 	})
-}
+})
